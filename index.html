@@ -10,38 +10,25 @@
   <style>
     :root {
       --bg: #0f0f0f;
-      /* negro elegante */
       --card: #161616;
-      /* gris oscuro */
       --text: #ffffff;
-      /* blanco */
       --muted: #cfcfcf;
-      /* gris claro */
       --brand: #ffffff;
-      /* blanco del logo */
       --brand2: #25D366;
-      /* verde WhatsApp */
       --line: rgba(255, 255, 255, .12);
       --radius: 18px;
     }
 
-    * {
-      box-sizing: border-box
-    }
+    * { box-sizing: border-box }
 
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: radial-gradient(1200px 700px at 20% 0%, rgba(79, 140, 255, .25), transparent 60%),
-        radial-gradient(900px 600px at 90% 10%, rgba(34, 197, 94, .18), transparent 55%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none
-    }
+    a { color: inherit; text-decoration: none }
 
     .wrap {
       max-width: 1100px;
@@ -53,7 +40,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(11, 18, 32, .72);
+      background: rgba(15,15,15,.85);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--line);
     }
@@ -70,15 +57,6 @@
       gap: 10px;
       align-items: center;
       font-weight: 700;
-      letter-spacing: .2px;
-    }
-
-    .badge {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--brand), #9ad0ff);
-      display: inline-block;
     }
 
     nav ul {
@@ -97,7 +75,7 @@
     }
 
     nav a:hover {
-      background: rgba(255, 255, 255, .06);
+      background: rgba(255, 255, 255, .08);
       color: var(--text)
     }
 
@@ -112,9 +90,7 @@
       font-weight: 600;
     }
 
-    .btn:hover {
-      background: rgba(255, 255, 255, .10)
-    }
+    .btn:hover { background: rgba(255, 255, 255, .12) }
 
     .btn.primary {
       background: #ffffff;
@@ -131,7 +107,6 @@
       display: grid;
       grid-template-columns: 1.1fr .9fr;
       gap: 20px;
-      align-items: stretch;
     }
 
     .panel {
@@ -144,14 +119,9 @@
     h1 {
       margin: 0 0 10px;
       font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.1
     }
 
-    p {
-      margin: 10px 0;
-      color: var(--muted);
-      line-height: 1.6
-    }
+    p { color: var(--muted); line-height: 1.6 }
 
     .cta {
       display: flex;
@@ -173,29 +143,7 @@
       padding: 16px;
     }
 
-    .card h3 {
-      margin: 0 0 6px;
-      font-size: 18px
-    }
-
-    .pill {
-      display: inline-flex;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 12px;
-      background: rgba(255, 255, 255, .03);
-    }
-
-    .section {
-      padding: 26px 0
-    }
-
-    .section h2 {
-      margin: 0 0 10px;
-      font-size: 26px
-    }
+    .section { padding: 26px 0 }
 
     .two {
       display: grid;
@@ -203,15 +151,7 @@
       gap: 14px
     }
 
-    .list {
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted)
-    }
-
-    .list li {
-      margin: 6px 0
-    }
+    .list { padding-left: 18px; color: var(--muted) }
 
     .footer {
       padding: 22px 0 40px;
@@ -220,263 +160,93 @@
       color: var(--muted);
     }
 
-    .social {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px
-    }
-
-    .small {
-      font-size: 13px;
-      color: var(--muted)
-    }
-
-    .notice {
-      border-left: 3px solid rgba(79, 140, 255, .8);
-      padding-left: 12px;
-      margin-top: 12px
-    }
-
     @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 34px
-      }
-
-      .grid {
-        grid-template-columns: 1fr
-      }
-
-      .two {
-        grid-template-columns: 1fr
-      }
-
-      nav ul {
-        gap: 6px
-      }
+      .hero { grid-template-columns: 1fr }
+      .grid { grid-template-columns: 1fr }
+      .two { grid-template-columns: 1fr }
     }
   </style>
 </head>
 
 <body>
-  <script>
-   
-    const RAW_PHONE = "09895524959";
 
+<script>
+  const RAW_PHONE = "09895524959";
 
-    function normalizePhone(raw) {
-      let n = String(raw || "").replace(/[^\d]/g, "");
-      if (n.startsWith("0")) n = "593" + n.slice(1);
-      return n;
-    }
+  function normalizePhone(raw) {
+    let n = String(raw).replace(/[^\d]/g, "");
+    if (n.startsWith("0")) n = "593" + n.slice(1);
+    return n;
+  }
 
-    const WHATSAPP_NUMBER = normalizePhone(RAW_PHONE);
-    const WHATSAPP_TEXT = "Hola Hemisferios del Mundo, quiero cotizar un paquete. Me ayudas por favor?";
-    const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
+  const WHATSAPP_NUMBER = normalizePhone(RAW_PHONE);
+  const WHATSAPP_TEXT = "Hola 👋 Hemisferios del Mundo, me gustaría cotizar un paquete de viaje. ¿Podrían ayudarme?";
+  const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
 
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("[data-wa]").forEach(a => a.href = waLink);
-      document.querySelectorAll("[data-wa-simple]").forEach(a => a.href = `https://wa.me/${WHATSAPP_NUMBER}`);
-      const y = document.getElementById("y");
-      if (y) y.textContent = new Date().getFullYear();
-    });
-  </script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-wa]").forEach(a => a.href = waLink);
+    document.querySelectorAll("[data-wa-simple]").forEach(a => a.href = `https://wa.me/${WHATSAPP_NUMBER}`);
+    document.getElementById("y").textContent = new Date().getFullYear();
+  });
+</script>
 
-  <header>
-    <div class="wrap nav">
-      <div class="logo">
-        <img src="assets/logo-hemisferios.png" alt="Hemisferios del Mundo" style="height:38px">
-        <span>Hemisferios del Mundo</span>
-      </div>
-
-      <nav aria-label="Menú principal">
-        <ul>
-          <li><a href="#paquetes">Paquetes</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#quienes">Qui�nes somos</a></li>
-          <li><a href="#mision">Misi�n y visi�n</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
+<header>
+  <div class="wrap nav">
+    <div class="logo">
+      <img src="assets/logo-hemisferios.png" alt="Hemisferios del Mundo" style="height:38px">
+      <span>Hemisferios del Mundo</span>
     </div>
-  </header>
 
-  <main class="wrap">
-    <section class="hero" id="inicio">
-      <div class="panel">
-        <h1>Viajes a tu medida, con atenci�n r�pida por WhatsApp.</h1>
-        <p>
-          Cotiza paquetes nacionales e internacionales, vuelos, hoteles y tours.
-          Te ayudamos a elegir la mejor opci�n seg�n tu presupuesto y fechas.
-        </p>
+    <nav>
+      <ul>
+        <li><a href="#paquetes">Paquetes</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#quienes">Quiénes somos</a></li>
+        <li><a href="#mision">Misión y visión</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-        <div class="cta">
-          <a class="btn whatsapp" data-wa href="#">Cotizar por WhatsApp</a>
-          <a class="btn primary" href="#paquetes">Ver paquetes</a>
-          <a class="btn" href="#contacto">Redes y contacto</a>
-        </div>
+<main class="wrap">
 
-        <p class="notice small">
-          Atenci�n personalizada � Asesor�a y reservas � Promos por temporada
-        </p>
-      </div>
+<section class="hero">
+  <div class="panel">
+    <h1>Viajes a tu medida, atención rápida por WhatsApp.</h1>
+    <p>Cotiza paquetes nacionales e internacionales, vuelos, hoteles y tours.</p>
 
-      <div class="panel">
-        <div class="pill">Promos destacadas</div>
-        <h2 style="margin:10px 0 6px;">Ofertas por temporada</h2>
-        <p class="small">Aqu� puedes poner 2�3 promos reales cuando las tengas.</p>
+    <div class="cta">
+      <a class="btn whatsapp" data-wa href="#">Cotizar por WhatsApp</a>
+      <a class="btn primary" href="#paquetes">Ver paquetes</a>
+    </div>
+  </div>
 
-        <div class="grid" style="grid-template-columns:1fr; margin-top:12px;">
-          <div class="card">
-            <h3>??? Promo 1</h3>
-            <p class="small">Hotel + traslados � Desde $___</p>
-            <a class="btn" data-wa href="#">Quiero cotizar</a>
-          </div>
-          <div class="card">
-            <h3>??? Promo 2</h3>
-            <p class="small">Vuelo + hotel � Desde $___</p>
-            <a class="btn" data-wa href="#">Quiero cotizar</a>
-          </div>
-          <div class="card">
-            <h3>?? Promo 3</h3>
-            <p class="small">Tours + gu�a � Desde $___</p>
-            <a class="btn" data-wa href="#">Quiero cotizar</a>
-          </div>
-        </div>
-      </div>
-    </section>
+  <div class="panel">
+    <h2>Ofertas por temporada</h2>
+    <p>Próximamente promociones especiales.</p>
+  </div>
+</section>
 
-    <section class="section" id="paquetes">
-      <h2>Paquetes</h2>
-      <p>Deja estos como ejemplo y luego reemplazas con tus destinos y precios.</p>
+<section class="section" id="quienes">
+  <h2>Quiénes somos</h2>
+  <div class="card">
+    <p>
+      Hemisferios del Mundo es una agencia enfocada en brindar asesoría clara,
+      opciones reales y atención personalizada en cada viaje.
+    </p>
+  </div>
+</section>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Destino 1</h3>
-          <div class="pill">Incluye</div>
-          <ul class="list">
-            <li>Vuelos / traslados</li>
-            <li>Hotel</li>
-            <li>Asistencia</li>
-          </ul>
-          <p class="small">Desde $___ � Fechas: __/__/__</p>
-          <a class="btn whatsapp" data-wa href="#">Cotizar</a>
-        </div>
+<section class="section" id="contacto">
+  <h2>Contacto</h2>
+  <a class="btn whatsapp" data-wa href="#">Escríbenos por WhatsApp</a>
+</section>
 
-        <div class="card">
-          <h3>Destino 2</h3>
-          <div class="pill">Incluye</div>
-          <ul class="list">
-            <li>Hotel</li>
-            <li>Desayuno</li>
-            <li>Tours (opcional)</li>
-          </ul>
-          <p class="small">Desde $___ � Fechas: __/__/__</p>
-          <a class="btn whatsapp" data-wa href="#">Cotizar</a>
-        </div>
+<footer class="footer">
+  <p>© <span id="y"></span> Hemisferios del Mundo. Todos los derechos reservados.</p>
+</footer>
 
-        <div class="card">
-          <h3>Destino 3</h3>
-          <div class="pill">Incluye</div>
-          <ul class="list">
-            <li>Tour principal</li>
-            <li>Transporte</li>
-            <li>Gu�a</li>
-          </ul>
-          <p class="small">Desde $___ � Fechas: __/__/__</p>
-          <a class="btn whatsapp" data-wa href="#">Cotizar</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="servicios">
-      <h2>Servicios</h2>
-      <div class="two">
-        <div class="card">
-          <h3>Lo que gestionamos</h3>
-          <ul class="list">
-            <li>Boletos aéreos</li>
-            <li>Hoteles y resorts</li>
-            <li>Tours y excursiones</li>
-            <li>Traslados</li>
-            <li>Seguro de viaje</li>
-            <li>Asesoría de itinerario</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Cómo trabajamos?</h3>
-          <ul class="list">
-            <li>Nos escribes por WhatsApp con destino y fechas</li>
-            <li>Te enviamos opciones (2-3 alternativas)</li>
-            <li>Confirmas y reservamos</li>
-            <li>Te acompañamos hasta tu viaje</li>
-          </ul>
-          <a class="btn whatsapp"
-   href="https://wa.me/593989524959?text=Hola%20quiero%20cotizar%20el%20paquete%20Destino%201">
-   Cotizar
-</a>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="quienes">
-      <h2>Qui�nes somos</h2>
-      <div class="card">
-        <p>
-          Hemisferios del Mundo es una agencia enfocada en brindar asesoría clara, opciones reales y atención rápida.
-          Nuestro objetivo es que tu experiencia sea segura y sin estrés: desde la cotización hasta tu regreso.
-        </p>
-      </div>
-    </section>
-
-    <section class="section" id="mision">
-      <h2>Mision y vision</h2>
-      <div class="two">
-        <div class="card">
-          <h3>Mision</h3>
-          <p>Brindar soluciones de viaje confiables, personalizadas y accesibles, con acompa�amiento en cada etapa.</p>
-        </div>
-        <div class="card">
-          <h3>Vision</h3>
-          <p>Ser una agencia referente por su atencion, transparencia y experiencias de viaje memorables.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contacto">
-      <h2>Contacto</h2>
-      <div class="two">
-        <div class="card">
-          <h3>WhatsApp</h3>
-          <p class="small">Respuesta rápida para cotizaciones y dudas.</p>
-          <a class="btn whatsapp" data-wa href="#">Abrir WhatsApp</a>
-          <p class="small" style="margin-top:10px;">Link directo (sin mensaje):</p>
-          <a class="btn" data-wa-simple href="#">WhatsApp directo</a>
-        </div>
-
-        <div class="card">
-          <h3>Redes</h3>
-          <p class="small">Cuando tengas los links, reemplaza el #</p>
-          <div class="social">
-            <a class="btn" href="#" target="_blank" rel="noopener">
-              :contentReference[oaicite:2]{index=2}
-            </a>
-            <a class="btn" href="#" target="_blank" rel="noopener">Facebook</a>
-            <a class="btn" href="#" target="_blank" rel="noopener">TikTok</a>
-          </div>
-          <p class="small" style="margin-top:10px;">
-            Correo (opcional): contacto@hemisferiosdelmundo.com
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <p class="small"> <span id="y"></span> Hemisferios del Mundo. Todos los derechos reservados.</p>
-    </footer>
-  </main>
+</main>
 </body>
-
 </html>
